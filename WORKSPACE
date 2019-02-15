@@ -86,11 +86,15 @@ bind(
 
 load("@bazel_skylib//lib:versions.bzl", "versions")
 
-new_http_archive(
+http_archive(
+     name = "com_google_googletest",
+     urls = ["https://github.com/google/googletest/archive/master.zip"],
+     strip_prefix = "googletest-master",
+)
+
+bind(
     name = "gtest",
-    url = "https://github.com/google/googletest/archive/release-1.8.0.zip",
-    build_file = "@com_github_google_ortools//bazel:gtest.BUILD",
-    strip_prefix = "googletest-release-1.8.0/googletest",
+    actual = "@com_google_googletest//:gtest",
 )
 
 new_http_archive(
